@@ -1,0 +1,14 @@
+# Compiled binary
+clinica
+
+# Generated binary data files (keep for delivery, but optional)
+# animais.bin
+# consultas.bin
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
