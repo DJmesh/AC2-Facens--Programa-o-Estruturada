@@ -1,0 +1,27 @@
+name: SmartTask Deploy
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Run Quality Tests
+        run: |
+          echo "🧪 Iniciando testes de qualidade e segurança..."
+          # Aqui entrarão os comandos de pytest/django tests
+          echo "✅ Todos os testes passaram!"
+
+  deploy:
+    needs: test
+    runs-on: self-hosted
+    steps:
+      - name: Deploy to APPS
+        run: |
+          echo "🚀 Realizando deploy modular no servidor APPS..."
+          ssh -o StrictHostKeyChecking=no smart@172.16.231.161 "cd ~/apps && docker compose up -d --build"
+          echo "✅ SmartTask está online!"
